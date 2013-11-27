@@ -4,7 +4,7 @@ int analogPin =0; // Pin des analogen Eingangs
 int analogWert = 0; // Speichert gemessenen Analaogwert
 
 void setup() {
-  for (int i = 0; 1 < pinLength; i++) {
+  for (int i = 0; i < 2; i++) {
     pinMode(pin[i], OUTPUT);
   }
   Serial.begin(9600);
@@ -13,14 +13,14 @@ void setup() {
 void loop () {
   analogWert = analogRead(analogPin);
   steuereLEDs(analogWert);
-  //Serial.println(analogRead(0));
+  Serial.println(analogWert);
 }
 
 // Funktion zum Ansteuern der LEDs
 void steuereLEDs (int wert) {
   int bargraphWert = map(wert, 0, 1023, 0 ,2);
-  Serial.println(bargraphWert);
-  for (int i = 0; i < pinLength; i++) {
+  for (int i = 0; i < 2; i++) {
     digitalWrite(pin[i], (bargraphWert >= 1) ? HIGH : LOW);
   }
 }
+
